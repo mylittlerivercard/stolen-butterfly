@@ -16,7 +16,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "tag:image": "bash scripts/tag-image.sh \"public/Damien-Hirst-Red-Butterfly-2009-Vole-PN-XXXXX.jpg\""
   },
   "eslintConfig": {
     "extends": [
