@@ -141,6 +141,28 @@ h1 .year { color: var(--muted); font-weight: 400; }
   color: var(--muted);
 }
 
+/* Clickable image + overlay */
+.image-link { display: block; position: relative; text-decoration: none; }
+.image-link .overlay {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: #fff;
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.25);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.image-link:hover .overlay, .image-link:focus .overlay { opacity: 1; }
+.image-link .hero-image { transition: transform 0.25s ease; }
+.image-link:hover .hero-image { transform: scale(1.01); }
+.image-link:focus-visible { outline: 2px solid var(--accent2); outline-offset: 6px; border-radius: 16px; }
+
 /* DETAILS CARD */
 .card {
   margin-top: 26px;

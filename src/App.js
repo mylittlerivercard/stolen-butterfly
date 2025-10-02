@@ -1,4 +1,5 @@
 import './App.css';
+import { initAnalytics, track } from './analytics';
 
 function App() {
   const imageUrl =
@@ -16,6 +17,11 @@ function App() {
     shareUrl
   )}`;
   const waHref = `https://wa.me/?text=${encodeURIComponent(`${title} ${shareUrl}`)}`;
+
+  // init analytics once
+  if (typeof window !== 'undefined') {
+    initAnalytics();
+  }
 
   return (
     <main className="page" lang="fr">
@@ -41,15 +47,31 @@ function App() {
             </a>
           </div>
         </div>
-        <figure className="frame" aria-label="Image de l'œuvre">
-          <img
-            src={imageUrl}
-            alt="Damien Hirst - Red Butterfly (2009) - Œuvre volée - PN-XXXXX"
-            className="hero-image"
-            loading="eager"
-          />
-          <figcaption>Damien Hirst — Red Butterfly (2009)</figcaption>
-        </figure>
+        <a
+          className="image-link"
+          href={`${imageUrl}?ref=stolen-butterfly&ev=hero_click`}
+          target="_blank"
+          rel="noreferrer"
+          onClick={() =>
+            track('hero_image_click', {
+              location: 'hero',
+              artist: 'Damien Hirst',
+              title: 'Red Butterfly',
+              year: '2009',
+            })
+          }
+        >
+          <figure className="frame" aria-label="Image de l'œuvre">
+            <img
+              src={imageUrl}
+              alt="Damien Hirst - Red Butterfly (2009) - Œuvre volée - PN-XXXXX"
+              className="hero-image"
+              loading="eager"
+            />
+            <div className="overlay">Cliquez pour agrandir</div>
+            <figcaption>Damien Hirst — Red Butterfly (2009)</figcaption>
+          </figure>
+        </a>
       </section>
 
       <section className="card details" aria-labelledby="details-title">
