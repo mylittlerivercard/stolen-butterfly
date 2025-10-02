@@ -16,7 +16,9 @@ export function initAnalytics() {
   function gtag() { window.dataLayer.push(arguments); }
   window.gtag = gtag;
   gtag('js', new Date());
-  gtag('config', GA_ID);
+  gtag('config', GA_ID, {
+    debug_mode: typeof window !== 'undefined' && window.location.hostname === 'localhost'
+  });
 }
 
 export function track(event, params = {}) {
@@ -43,4 +45,3 @@ function objToStr(obj) {
   for (const k in obj) out[k] = String(obj[k]);
   return out;
 }
-

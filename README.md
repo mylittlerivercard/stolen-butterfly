@@ -68,3 +68,34 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Analytics (GA4)
+
+To track clicks on the artwork image via Google Analytics 4:
+
+1) Create a GA4 property and get your Measurement ID (format `G-XXXXXXXXXX`).
+
+2) Add your ID to an env file:
+
+```
+cp .env.example .env.local
+# then edit .env.local and set your ID
+```
+
+3) Start the app:
+
+```
+npm start
+```
+
+Locally we enable GA debug mode so you can see events in GA Realtime > DebugView.
+
+### What is tracked
+
+- Event: `hero_image_click` with params `{ artist, title, year, location }`.
+
+### Where to see counts
+
+- Realtime: Engagement shows incoming `hero_image_click` as you click.
+- Standard reports: Reports > Engagement > Events → select `hero_image_click` → Event count.
+- Optional: Admin > Custom definitions → add event-scoped dimensions for `artist`, `title`, `year` for breakdowns.
